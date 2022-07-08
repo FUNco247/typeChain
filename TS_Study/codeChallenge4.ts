@@ -28,5 +28,15 @@ type filter = (arr: Array<any>, func: callbackFilter) => Array<any>;
 type every = (arr: Array<any>, check: any) => boolean;
 
 /* map.js */
-type callbackMap = (e: any) => any;
-type map = (arr: Array<any>, func: callbackMap) => Array<any>;
+type callbackMap = <T>(e: T) => any;
+type map = <T>(arr: Array<T>, func: callbackMap) => Array<any>;
+
+// example
+type callback = <T>(e: T) => any;
+const map: map = <T>(arr: Array<T>, func: callback): Array<T> => {
+  let resultArr: any[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    resultArr[i] = func(arr[i]);
+  }
+  return resultArr;
+};
